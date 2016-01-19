@@ -28,3 +28,7 @@ body {
     bottom: 0;
     right: 20px;
 }
+
+#flashed-messages > li {
+    list-style-type: none;
+}
