@@ -1,0 +1,70 @@
+{% block modals_forms %}
+
+<div class="modal fade" id="add-context-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Create Context</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('new_context') }}" id="add-context-form" method="POST">
+                    {{ context_form.hidden_tag() }}
+                    <div class="form-group">
+                        <label for="context_name">Context Name</label>
+                        <input type="text" class="form-control" id="context_name" name="context_name" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="context_default">Default</label>
+                        {{ context_form.context_default }}
+                    </div>
+                    <button type="submit" class="btn btn-default">Create</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="add-installation-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Create Installation</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('new_installation') }}" method="POST" id="add-installation-form">
+                    {{ installation_form.hidden_tag() }}
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="base_url">Base URL</label>
+                        <input type="text" class="form-control" id="base_url" name="base_url">
+                    </div>
+                    <div class="form-group">
+                        <label for="api_token">API Token</label>
+                        <input type="text" class="form-control" id="api_token" name="api_token">
+                    </div>
+                    <div class="form-group">
+                        <label for="context_id">Context</label>
+                        <select class="form-control" name="context_id">
+                            {% for context in contexts %}
+                            <option value="{{ context.context_id }}">{{ context.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group"></div>
+                    <button type="submit" class="btn btn-default">Create</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
