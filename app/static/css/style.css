@@ -32,3 +32,18 @@ body {
 #flashed-messages > li {
     list-style-type: none;
 }
+
+p.bg-danger {
+    padding: 10px;
+    border-radius: 4px;
+}
+
+#loading-modal .modal-body p .fa-spinner {
+    font-size: 4em;
+}
+
+#loading-modal .modal-body p span {
+    margin-top: 10px;
+    font-size: 2em;
+    display: block;
+}
