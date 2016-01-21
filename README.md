@@ -3,6 +3,13 @@
 ### Dependencies
 
 flask
+
 flask-sqlalchemy-migrate
+
 flask-sqlalchemy
+
 flask-wtf
+
+requests
+
+gitpython
