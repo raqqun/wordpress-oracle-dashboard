@@ -3,6 +3,9 @@ from app import app, db
 from models import Contextes, Installations, Plugins, Themes
 from forms import NewContextForm, NewInstallationForm
 
+from config import WP_ORACLE_API
+
+import requests
 
 @app.route("/")
 @app.route("/index")
@@ -89,9 +92,23 @@ def new_installation():
         installation.base_url = InstallationForm.base_url.data
         installation.context_id = InstallationForm.context_id.data
         installation.api_token = InstallationForm.api_token.data
-        db.session.add(installation)
-        db.session.commit()
-        return jsonify(installation=installation.name + ' Installation Created')
+
+        r = requests.get(
+            installation.base_url + WP_ORACLE_API['status'],
+            headers={'API-TOKEN': installation.api_token}
+        )
+
+        r_json = r.json()
+        if (r.status_code == 200) and (r_json['blog']['status'] == 'ok'):
+            pass
+        else:
+            pass
+            # db.session.add(installation)
+            # db.session.commit()
+
+        return 'ok'
+
+        # return jsonify(installation=installation.name + ' Installation Created')
 
     errors = {}
     for field_name, field_errors in InstallationForm.errors.iteritems():
